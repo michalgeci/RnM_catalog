@@ -17,10 +17,11 @@ final class RestAPI {
     
     /** Obtain all characters */
     static func getAllCharacters(pageURL: String = RestAPI.charactersBaseURL,
+                                 filter: RMCharacterFilter?,
                                  completion: @escaping ( _ response: CharactersResponse?, _ error: AFError?) -> Void ) {
         
         // Perform request
-        AF.request(pageURL, method: .get).responseDecodable(of: CharactersResponse.self) {
+        AF.request(pageURL, method: .get, parameters: filter?.toRequestParameter()).responseDecodable(of: CharactersResponse.self) {
             response in
             do {
                 let result = try response.result.get()
