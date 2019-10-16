@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CharacterListVC.swift
 //  Rick and Morty info
 //
 //  Created by Michal Geci on 16/10/2019.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CharacterListVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-
 }
-

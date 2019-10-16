@@ -44,7 +44,7 @@
         <!--Characters-->
         <scene sceneID="fgm-yk-rw3">
             <objects>
-                <viewController id="OmK-0w-Hyf" sceneMemberID="viewController">
+                <viewController id="OmK-0w-Hyf" customClass="CharacterListVC" customModule="Rick_and_Morty_info" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oJS-tR-Z2g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
