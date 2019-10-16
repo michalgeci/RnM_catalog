@@ -40,6 +40,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		323465C4235782BD002C14F4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		324AB3D323576B3600A8A961 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +68,7 @@
 		324AB3DE23576B3600A8A961 /* Rick and Morty info */ = {
 			isa = PBXGroup;
 			children = (
+				323465C4235782BD002C14F4 /* Networking */,
 				324AB3DF23576B3600A8A961 /* AppDelegate.swift */,
 				324AB3E323576B3600A8A961 /* ViewController.swift */,
 				324AB3E523576B3600A8A961 /* Main.storyboard */,
@@ -77,7 +85,6 @@
 				28E4CDCF76297E7A2B2936B0 /* Pods-Rick and Morty info.debug.xcconfig */,
 				1CA635B118AD51ED098DB513 /* Pods-Rick and Morty info.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -100,6 +107,7 @@
 				324AB3D823576B3600A8A961 /* Sources */,
 				324AB3D923576B3600A8A961 /* Frameworks */,
 				324AB3DA23576B3600A8A961 /* Resources */,
+				7D41892D17929690F9B5B57C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,6 +165,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7D41892D17929690F9B5B57C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rick and Morty info/Pods-Rick and Morty info-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rick and Morty info/Pods-Rick and Morty info-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rick and Morty info/Pods-Rick and Morty info-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D4697C06AE3585E20EAC6EC2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
