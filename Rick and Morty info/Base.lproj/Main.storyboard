@@ -121,6 +121,36 @@
                                             <outlet property="nameLabel" destination="D88-OT-oqN" id="WVp-MD-4xv"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="loadingCell" id="yus-KC-BEK" customClass="LoadingCell" customModule="Rick_and_Morty_info" customModuleProvider="target">
+                                        <rect key="frame" x="31" y="197" width="258" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wwB-kD-KZt">
+                                            <rect key="frame" x="0.0" y="0.0" width="258" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QaZ-Xa-Uz1">
+                                                    <rect key="frame" x="74" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJx-HU-LvM">
+                                                    <rect key="frame" x="102" y="16" width="54.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bJx-HU-LvM" firstAttribute="centerY" secondItem="wwB-kD-KZt" secondAttribute="centerY" id="0Pr-GR-nNb"/>
+                                                <constraint firstItem="QaZ-Xa-Uz1" firstAttribute="centerY" secondItem="wwB-kD-KZt" secondAttribute="centerY" id="nDn-B9-IXa"/>
+                                                <constraint firstItem="bJx-HU-LvM" firstAttribute="centerX" secondItem="wwB-kD-KZt" secondAttribute="centerX" id="oJi-Do-dlP"/>
+                                                <constraint firstItem="bJx-HU-LvM" firstAttribute="leading" secondItem="QaZ-Xa-Uz1" secondAttribute="trailing" constant="8" id="pXw-Ap-OOJ"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="258" height="50"/>
+                                        <connections>
+                                            <outlet property="indicator" destination="QaZ-Xa-Uz1" id="dhO-ki-ULc"/>
+                                            <outlet property="label" destination="bJx-HU-LvM" id="57m-qM-yOw"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
@@ -141,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcG-59-0hw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-341" y="1428"/>
+            <point key="canvasLocation" x="-341.25" y="1427.1126760563379"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zIR-Kb-j78">

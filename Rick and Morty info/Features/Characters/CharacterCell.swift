@@ -15,12 +15,11 @@ class CharacterCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var foregroundImage: UIImageView!
     
-    private var shadowLayer: CAShapeLayer!
+    private let placeholderImage = UIImage(named: "ic_face_32")
     
     func assignCharacter(character: RMCharacter) {
         self.nameLabel.text = character.name
         let url = URL(string: character.image)
-        let placeholderImage = UIImage(named: "ic_face_32")
         
         self.backgroundImage?.sd_setImage(with: url, placeholderImage: placeholderImage, options: SDWebImageOptions.init()) { (image, error, _, _) in
             if let image = image {
@@ -28,15 +27,25 @@ class CharacterCell: UICollectionViewCell {
                 self.foregroundImage.image = image
             } else {
                 self.foregroundImage.contentMode = .center
-                self.foregroundImage.image = placeholderImage
+                self.foregroundImage.image = self.placeholderImage
             }
         }
     }
     
-    override func draw(_ rect: CGRect) {
+    func initDefaults() {
         // Calculate real size of cell
         self.layoutIfNeeded()
         
+        // Reset name
+        self.nameLabel.text = "_-_-_-_"
+        
+        // Reset placeholder images
+        self.foregroundImage.contentMode = .center
+        self.foregroundImage.image = placeholderImage
+        self.backgroundImage.image = placeholderImage
+    }
+    
+    override func draw(_ rect: CGRect) {
         // Set corner radius for cell
         self.layer.cornerRadius = 8
         

@@ -15,7 +15,10 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
     
     var characters: [RMCharacter] = []
     
-    let searchController = UISearchController(searchResultsController: nil)
+    var numberOfCells: Int = 0
+    private var addedLoader = false
+    private var nextPageUrl = ""
+    private var filter: RMCharacterFilter? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +26,11 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        RestAPI.getAllCharacters(filter: nil) { (response, error) in
+        RestAPI.getAllCharacters(filter: self.filter) { (response, error) in
             self.characters = response?.results ?? []
+            self.numberOfCells = self.characters.count
+            self.nextPageUrl = response?.info.next ?? ""
+            
             self.collectionView.reloadData()
         }
     }
@@ -34,19 +40,52 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return characters.count
+        return self.numberOfCells
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row + 1 == self.characters.count && !addedLoader {
+            print("SHOULD LOAD NEW")
+            self.numberOfCells += 1
+            self.addedLoader = true
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                RestAPI.getAllCharacters(pageURL: self.nextPageUrl, filter: self.filter) { (response, error) in
+                    self.nextPageUrl = response?.info.next ?? ""
+                    self.characters.append(contentsOf: response?.results ?? [])
+                    self.numberOfCells = self.characters.count
+                    self.addedLoader = false
+                    self.collectionView.reloadData()
+                }
+            }
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "characterCell", for: indexPath) as! CharacterCell
-        cell.assignCharacter(character: self.characters[indexPath.row])
-        return cell
+        
+        if indexPath.row < self.characters.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "characterCell", for: indexPath) as! CharacterCell
+            cell.initDefaults()
+            cell.assignCharacter(character: self.characters[indexPath.row])
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingCell
+            cell.startAnimation()
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width - 24) / 2
         let height = width / 1.62
-        return CGSize(width: width, height: height)
+        
+        if indexPath.row < self.characters.count {
+            return CGSize(width: width, height: height)
+        } else {
+            return CGSize(width: UIScreen.main.bounds.width - 16, height: 32)
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
