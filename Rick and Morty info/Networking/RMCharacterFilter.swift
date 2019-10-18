@@ -26,6 +26,35 @@ class RMCharacterFilter {
         self.gender = gender
     }
     
+    init(url: String) {
+        let params = URL(string: url)?.params()
+        
+        if let page = params?["page"] as? String {
+            let pageInt = Int(page)
+            self.page = pageInt
+        }
+        
+        if let name = params?["name"] as? String {
+            self.name = name
+        }
+        
+        if let status = params?["status"] as? String {
+            self.status = RMCharacter.Status.init(rawValue: status)
+        }
+        
+        if let species = params?["species"] as? String {
+            self.species = species
+        }
+        
+        if let type = params?["type"] as? String {
+            self.type = type
+        }
+        
+        if let gender = params?["gender"] as? String {
+            self.gender = RMCharacter.Gender.init(rawValue: gender)
+        }
+    }
+    
     func toRequestParameter() -> Parameters {
         var params: [String: Any] = [:]
         

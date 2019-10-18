@@ -28,7 +28,7 @@ extension CharacterListVC {
                 self.collectionView.reloadData()
                 if self.filter.page != nil {
                     RestAPI.getAllCharacters(filter: self.filter) { (response, error) in
-                        self.filter = RestAPI.parseCharacterFilter(url: response?.info.next ?? "")
+                        self.filter = RMCharacterFilter(url: response?.info.next ?? "")
                         self.characters.append(contentsOf: response?.results ?? [])
                         self.numberOfCells = self.characters.count
                         self.addedLoader = false

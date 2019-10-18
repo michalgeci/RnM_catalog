@@ -41,7 +41,7 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
         RestAPI.getAllCharacters(filter: self.filter) { (response, error) in
             self.characters = response?.results ?? []
             self.numberOfCells = self.characters.count
-            self.filter = RestAPI.parseCharacterFilter(url: response?.info.next ?? "")
+            self.filter =  RMCharacterFilter(url: response?.info.next ?? "")
             self.collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
             self.addedLoader = false
             self.collectionView.reloadData()
