@@ -11,16 +11,10 @@ import Alamofire
 
 final class RestAPI {
     
-    // MARK: - Characters
-    
-    static let charactersBaseURL = "https://rickandmortyapi.com/api/character/"
-    
-    /** Obtain all characters */
-    static func getAllCharacters(filter: RMCharacterFilter?,
-                                 completion: @escaping ( _ response: CharactersResponse?, _ error: AFError?) -> Void ) {
+    // MARK: - Common request
+    static func universalRequest<T: Decodable>(url: String, params: Parameters?, completion: @escaping (T?, AFError?) -> Void) {
         
-        // Perform request
-        AF.request(charactersBaseURL, method: .get, parameters: filter?.toRequestParameter()).responseDecodable(of: CharactersResponse.self) {
+        AF.request(url, method: .get, parameters: params).responseDecodable(of: T.self) {
             response in
             do {
                 let result = try response.result.get()
@@ -29,6 +23,17 @@ final class RestAPI {
                 completion(nil, response.error )
             }
         }
+    }
+    
+    // MARK: - Characters
+    
+    static let charactersBaseURL = "https://rickandmortyapi.com/api/character/"
+    
+    /** Obtain all characters */
+    static func getAllCharacters(filter: RMCharacterFilter?,
+                                 completion: @escaping ( _ response: CharactersResponse?, _ error: AFError?) -> Void ) {
+        // Perform request
+        universalRequest(url: charactersBaseURL, params: filter?.toRequestParameter(), completion: completion)
     }
     
     /** Get character detail */
@@ -37,17 +42,10 @@ final class RestAPI {
         let requestURL = RestAPI.charactersBaseURL + String(id)
         
         // Perform request
-        AF.request(requestURL, method: .get).responseDecodable(of: RMCharacter.self) {
-            response in
-            do {
-                let result = try response.result.get()
-                completion(result, nil)
-            } catch {
-                completion(nil, response.error )
-            }
-        }
+        universalRequest(url: requestURL, params: nil, completion: completion)
     }
     
+    // MARK: Parse character filter
     /** Parse character filter */
     static func parseCharacterFilter(url: String) -> RMCharacterFilter {
         let filter = RMCharacterFilter(page: nil, name: nil, status: nil, species: nil, type: nil, gender: nil)
@@ -88,17 +86,8 @@ final class RestAPI {
     /** Obtain all locations */
     static func getAllLocations(pageURL: String = RestAPI.locationsBaseURL,
                                 completion: @escaping ( _ response: LocationsResponse?, _ error: AFError?) -> Void ) {
-        
         // Perform request
-        AF.request(pageURL, method: .get).responseDecodable(of: LocationsResponse.self) {
-            response in
-            do {
-                let result = try response.result.get()
-                completion(result, nil)
-            } catch {
-                completion(nil, response.error )
-            }
-        }
+        universalRequest(url: pageURL, params: nil, completion: completion)
     }
     
     /** Get location detail */
@@ -107,15 +96,7 @@ final class RestAPI {
         let requestURL = RestAPI.locationsBaseURL + String(id)
         
         // Perform request
-        AF.request(requestURL, method: .get).responseDecodable(of: RMLocation.self) {
-            response in
-            do {
-                let result = try response.result.get()
-                completion(result, nil)
-            } catch {
-                completion(nil, response.error )
-            }
-        }
+        universalRequest(url: requestURL, params: nil, completion: completion)
     }
     
     // MARK: - Episodes
@@ -127,15 +108,7 @@ final class RestAPI {
                                completion: @escaping ( _ response: EpisodesResponse?, _ error: AFError?) -> Void ) {
         
         // Perform request
-        AF.request(pageURL, method: .get).responseDecodable(of: EpisodesResponse.self) {
-            response in
-            do {
-                let result = try response.result.get()
-                completion(result, nil)
-            } catch {
-                completion(nil, response.error )
-            }
-        }
+        universalRequest(url: pageURL, params: nil, completion: completion)
     }
     
     /** Get episode detail */
@@ -144,15 +117,7 @@ final class RestAPI {
         let requestURL = RestAPI.episodesBaseURL + String(id)
         
         // Perform request
-        AF.request(requestURL, method: .get).responseDecodable(of: RMEpisode.self) {
-            response in
-            do {
-                let result = try response.result.get()
-                completion(result, nil)
-            } catch {
-                completion(nil, response.error )
-            }
-        }
+        universalRequest(url: requestURL, params: nil, completion: completion)
     }
     
     /** Get multiple episodes details */
@@ -164,17 +129,8 @@ final class RestAPI {
         }
         
         let requestURL = RestAPI.episodesBaseURL + idsStr
-        print(requestURL)
         
         // Perform request
-        AF.request(requestURL, method: .get).responseDecodable(of: [RMEpisode].self) {
-            response in
-            do {
-                let result = try response.result.get()
-                completion(result, nil)
-            } catch {
-                completion(nil, response.error )
-            }
-        }
+        universalRequest(url: requestURL, params: nil, completion: completion)
     }
 }

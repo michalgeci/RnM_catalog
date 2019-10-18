@@ -345,6 +345,11 @@
                                         <constraint firstItem="6Kw-4D-OpF" firstAttribute="leading" secondItem="kwN-ti-oYz" secondAttribute="trailing" constant="2" id="nZN-fG-B7I"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dimensionLabel" destination="6Kw-4D-OpF" id="syY-tV-e1w"/>
+                                    <outlet property="nameLabel" destination="kwN-ti-oYz" id="cvN-tc-9U1"/>
+                                    <outlet property="typeLabel" destination="2g9-YQ-y3K" id="rsl-Be-wYC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
