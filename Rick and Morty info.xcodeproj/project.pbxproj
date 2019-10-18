@@ -26,6 +26,7 @@
 		32EEE8B52359FFA800F0DBE4 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8B42359FFA800F0DBE4 /* URL+Extension.swift */; };
 		32EEE8BA235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */; };
 		32EEE8BC235A0DE500F0DBE4 /* CharacterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */; };
+		32EEE8BE235A497600F0DBE4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8BD235A497600F0DBE4 /* UIViewController+Extension.swift */; };
 		3BC4326CF93419E5B334A3DA /* Pods_Rick_and_Morty_info.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3EA8A7423F42D08613E253 /* Pods_Rick_and_Morty_info.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		32EEE8B42359FFA800F0DBE4 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterListVC+CollectionView.swift"; sourceTree = "<group>"; };
 		32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailVC.swift; sourceTree = "<group>"; };
+		32EEE8BD235A497600F0DBE4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		BD3EA8A7423F42D08613E253 /* Pods_Rick_and_Morty_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rick_and_Morty_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				32EEE8B42359FFA800F0DBE4 /* URL+Extension.swift */,
+				32EEE8BD235A497600F0DBE4 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				323465C6235787C8002C14F4 /* RestAPI.swift in Sources */,
 				323465CB23578BE6002C14F4 /* Pagination.swift in Sources */,
 				3224D8EA2357C91D00F4FBF0 /* CharacterCell.swift in Sources */,
+				32EEE8BE235A497600F0DBE4 /* UIViewController+Extension.swift in Sources */,
 				3224D8E423579B7400F4FBF0 /* RMEpisode.swift in Sources */,
 				32EEE8B52359FFA800F0DBE4 /* URL+Extension.swift in Sources */,
 				3224D8E223579AF000F4FBF0 /* RMLocation.swift in Sources */,

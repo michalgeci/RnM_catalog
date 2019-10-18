@@ -11,10 +11,6 @@ import SDWebImage
 
 class CharacterDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
-    
-    
     var character: RMCharacter!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -36,23 +32,20 @@ class CharacterDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         // Set title
         navItem.title = character.name
         
-        // Set Image
+        // Set background image
         let url = URL(string: character.image)
-        self.backgroundImage?.sd_setImage(with: url, placeholderImage: placeholderImage, options: SDWebImageOptions.init()) { (image, error, _, _) in
-            if let image = image {
-                self.foregroundImage.contentMode = .scaleAspectFit
-                self.foregroundImage.image = image
-            } else {
-                self.foregroundImage.contentMode = .center
-                self.foregroundImage.image = self.placeholderImage
-            }
+        self.backgroundImage.sd_setImage(with: url, placeholderImage: placeholderImage)
+        
+        // Set foreground image
+        self.foregroundImage.sd_setImage(with: url, placeholderImage: placeholderImage) { (_, _, _, _) in
+            self.foregroundImage.contentMode = .scaleAspectFit
         }
     }
     
+    /** Dismiss controller when clicked on "X" */
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
     
 
     // MARK: - Table view

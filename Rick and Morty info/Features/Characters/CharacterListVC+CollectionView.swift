@@ -11,6 +11,7 @@ import UIKit
 extension CharacterListVC {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row >= self.characters.count { return }
         let character = self.characters[indexPath.row]
         self.performSegue(withIdentifier: "showCharacterDetail", sender: character)
     }
@@ -25,7 +26,7 @@ extension CharacterListVC {
             self.addedLoader = true
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                if self.filter?.page != nil {
+                if self.filter.page != nil {
                     RestAPI.getAllCharacters(filter: self.filter) { (response, error) in
                         self.filter = RestAPI.parseCharacterFilter(url: response?.info.next ?? "")
                         self.characters.append(contentsOf: response?.results ?? [])
@@ -47,7 +48,7 @@ extension CharacterListVC {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingCell
-            if self.filter?.page == nil {
+            if self.filter.page == nil {
                 cell.label.text = "No more data"
                 cell.stopAnimation()
             } else {
@@ -62,7 +63,7 @@ extension CharacterListVC {
     // Set size of cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (UIScreen.main.bounds.width - 24) / 2
-        let height = width / 1.62
+        let height = width / 1.62 + 16
         
         if indexPath.row < self.characters.count {
             return CGSize(width: width, height: height)

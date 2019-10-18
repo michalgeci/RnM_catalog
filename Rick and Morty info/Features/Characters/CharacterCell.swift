@@ -11,6 +11,7 @@ import SDWebImage
 
 class CharacterCell: UICollectionViewCell {
     
+    @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var foregroundImage: UIImageView!
@@ -21,20 +22,22 @@ class CharacterCell: UICollectionViewCell {
         self.nameLabel.text = character.name
         let url = URL(string: character.image)
         
-        self.backgroundImage?.sd_setImage(with: url, placeholderImage: placeholderImage, options: SDWebImageOptions.init()) { (image, error, _, _) in
-            if let image = image {
-                self.foregroundImage.contentMode = .scaleAspectFill
-                self.foregroundImage.image = image
-            } else {
-                self.foregroundImage.contentMode = .center
-                self.foregroundImage.image = self.placeholderImage
-            }
+        self.backgroundImage.sd_setImage(with: url, placeholderImage: placeholderImage)
+        
+        self.foregroundImage.sd_setImage(with: url, placeholderImage: placeholderImage) { (_, _, _, _) in
+            self.foregroundImage.contentMode = .scaleAspectFill
         }
     }
     
     func initDefaults() {
         // Calculate real size of cell
         self.layoutIfNeeded()
+        
+        if traitCollection.userInterfaceStyle == .dark {
+            blur.effect = UIBlurEffect(style: .dark)
+        } else {
+            blur.effect = UIBlurEffect(style: .extraLight)
+        }
         
         // Reset name
         self.nameLabel.text = "_-_-_-_"
