@@ -16,12 +16,11 @@ final class RestAPI {
     private static var charactersBaseURL = "https://rickandmortyapi.com/api/character/"
     
     /** Obtain all characters */
-    static func getAllCharacters(pageURL: String = RestAPI.charactersBaseURL,
-                                 filter: RMCharacterFilter?,
+    static func getAllCharacters(filter: RMCharacterFilter?,
                                  completion: @escaping ( _ response: CharactersResponse?, _ error: AFError?) -> Void ) {
         
         // Perform request
-        AF.request(pageURL, method: .get, parameters: filter?.toRequestParameter()).responseDecodable(of: CharactersResponse.self) {
+        AF.request(charactersBaseURL, method: .get, parameters: filter?.toRequestParameter()).responseDecodable(of: CharactersResponse.self) {
             response in
             do {
                 let result = try response.result.get()
@@ -47,6 +46,39 @@ final class RestAPI {
                 completion(nil, response.error )
             }
         }
+    }
+    
+    /** Parse character filter */
+    static func parseCharacterFilter(url: String) -> RMCharacterFilter {
+        let filter = RMCharacterFilter(page: nil, name: nil, status: nil, species: nil, type: nil, gender: nil)
+        let params = URL(string: url)?.params()
+        
+        if let page = params?["page"] as? String {
+            let pageInt = Int(page)
+            filter.page = pageInt
+        }
+        
+        if let name = params?["name"] as? String {
+            filter.name = name
+        }
+        
+        if let status = params?["status"] as? String {
+            filter.status = RMCharacter.Status.init(rawValue: status)
+        }
+        
+        if let species = params?["species"] as? String {
+            filter.species = species
+        }
+        
+        if let type = params?["type"] as? String {
+            filter.type = type
+        }
+        
+        if let gender = params?["gender"] as? String {
+            filter.gender = RMCharacter.Gender.init(rawValue: gender)
+        }
+        
+        return filter
     }
     
     // MARK: - Locations

@@ -23,6 +23,9 @@
 		324AB3E923576B3A00A8A961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324AB3E823576B3A00A8A961 /* Assets.xcassets */; };
 		324AB3EC23576B3A00A8A961 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324AB3EA23576B3A00A8A961 /* LaunchScreen.storyboard */; };
 		32EEE8B2235897F700F0DBE4 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8B1235897F700F0DBE4 /* LoadingCell.swift */; };
+		32EEE8B52359FFA800F0DBE4 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8B42359FFA800F0DBE4 /* URL+Extension.swift */; };
+		32EEE8BA235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */; };
+		32EEE8BC235A0DE500F0DBE4 /* CharacterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */; };
 		3BC4326CF93419E5B334A3DA /* Pods_Rick_and_Morty_info.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3EA8A7423F42D08613E253 /* Pods_Rick_and_Morty_info.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		324AB3EB23576B3A00A8A961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		324AB3ED23576B3A00A8A961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32EEE8B1235897F700F0DBE4 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		32EEE8B42359FFA800F0DBE4 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterListVC+CollectionView.swift"; sourceTree = "<group>"; };
+		32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailVC.swift; sourceTree = "<group>"; };
 		BD3EA8A7423F42D08613E253 /* Pods_Rick_and_Morty_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rick_and_Morty_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,8 +80,10 @@
 			isa = PBXGroup;
 			children = (
 				3224D8DD235791B100F4FBF0 /* CharacterListVC.swift */,
+				32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */,
 				3224D8E92357C91D00F4FBF0 /* CharacterCell.swift */,
 				32EEE8B1235897F700F0DBE4 /* LoadingCell.swift */,
+				32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -125,6 +133,7 @@
 		324AB3DE23576B3600A8A961 /* Rick and Morty info */ = {
 			isa = PBXGroup;
 			children = (
+				32EEE8B32359FF9300F0DBE4 /* Extensions */,
 				323465C4235782BD002C14F4 /* Networking */,
 				3224D8DB2357916000F4FBF0 /* Features */,
 				324AB3DF23576B3600A8A961 /* AppDelegate.swift */,
@@ -134,6 +143,14 @@
 				324AB3ED23576B3A00A8A961 /* Info.plist */,
 			);
 			path = "Rick and Morty info";
+			sourceTree = "<group>";
+		};
+		32EEE8B32359FF9300F0DBE4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				32EEE8B42359FFA800F0DBE4 /* URL+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7A1417D15EC7026CD076FAE1 /* Pods */ = {
@@ -273,12 +290,15 @@
 				323465CB23578BE6002C14F4 /* Pagination.swift in Sources */,
 				3224D8EA2357C91D00F4FBF0 /* CharacterCell.swift in Sources */,
 				3224D8E423579B7400F4FBF0 /* RMEpisode.swift in Sources */,
+				32EEE8B52359FFA800F0DBE4 /* URL+Extension.swift in Sources */,
 				3224D8E223579AF000F4FBF0 /* RMLocation.swift in Sources */,
 				323465CD23578CFA002C14F4 /* RMCharacter.swift in Sources */,
 				32EEE8B2235897F700F0DBE4 /* LoadingCell.swift in Sources */,
 				323465C923578BA1002C14F4 /* CharactersResponse.swift in Sources */,
 				324AB3E023576B3600A8A961 /* AppDelegate.swift in Sources */,
+				32EEE8BC235A0DE500F0DBE4 /* CharacterDetailVC.swift in Sources */,
 				3224D8E623579BE900F4FBF0 /* EpisodesResponse.swift in Sources */,
+				32EEE8BA235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift in Sources */,
 				3224D8E023579ACD00F4FBF0 /* LocationsResponse.swift in Sources */,
 				3224D8E82357AC0D00F4FBF0 /* RMCharacterFilter.swift in Sources */,
 			);

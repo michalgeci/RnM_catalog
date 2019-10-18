@@ -11,13 +11,14 @@ import Alamofire
 
 class RMCharacterFilter {
      
+    var page: Int?
     var name: String?
     var status: RMCharacter.Status?
     var species: String?
     var type: String?
     var gender: RMCharacter.Gender?
     
-    init(name: String?, status: RMCharacter.Status?, species: String?, type: String?, gender: RMCharacter.Gender?) {
+    init(page: Int?, name: String?, status: RMCharacter.Status?, species: String?, type: String?, gender: RMCharacter.Gender?) {
         self.name = name
         self.status = status
         self.species = species
@@ -27,6 +28,10 @@ class RMCharacterFilter {
     
     func toRequestParameter() -> Parameters {
         var params: [String: Any] = [:]
+        
+        if let page = self.page {
+            params["page"] = page
+        }
         
         if let name = self.name {
             params["name"] = name

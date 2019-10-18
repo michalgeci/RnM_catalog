@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jc5-N7-LYh">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -173,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="-341.25" y="1427.1126760563379"/>
         </scene>
-        <!--View Controller-->
+        <!--Character DetailVC-->
         <scene sceneID="zIR-Kb-j78">
             <objects>
-                <viewController id="Oph-Mn-CTl" sceneMemberID="viewController">
+                <viewController id="Oph-Mn-CTl" customClass="CharacterDetailVC" customModule="Rick_and_Morty_info" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="25t-cJ-SZA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,25 +185,97 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                 <items>
                                     <navigationItem title="Title" id="A7l-9g-D3B">
-                                        <barButtonItem key="backBarButtonItem" title="Back" id="jqh-sW-Isl"/>
+                                        <barButtonItem key="rightBarButtonItem" image="ic_close_24" style="plain" id="g4x-UK-Zt6">
+                                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <connections>
+                                                <action selector="dismissAction:" destination="Oph-Mn-CTl" id="KgE-np-fnB"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xKE-Su-NiR" userLabel="Background Image">
+                                <rect key="frame" x="0.0" y="56" width="320" height="166.5"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6O-Jh-zEZ">
+                                <rect key="frame" x="0.0" y="56" width="320" height="166.5"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YCZ-Dh-OeY">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="166.5"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MIJ-j9-zXU" userLabel="Foreground Image">
+                                <rect key="frame" x="0.0" y="56" width="320" height="166.5"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-mg-rFH">
+                                <rect key="frame" x="16" y="238.5" width="288" height="244.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" textLabel="fRV-2S-UjE" detailTextLabel="em7-N4-Eci" style="IBUITableViewCellStyleValue1" id="4vb-vM-bmN">
+                                        <rect key="frame" x="0.0" y="28" width="288" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4vb-vM-bmN" id="Ldh-G7-n2I">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRV-2S-UjE">
+                                                    <rect key="frame" x="15" y="13" width="31" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="em7-N4-Eci">
+                                                    <rect key="frame" x="235.5" y="14" width="37.5" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="H6O-Jh-zEZ" firstAttribute="trailing" secondItem="xKE-Su-NiR" secondAttribute="trailing" id="5tX-EE-96j"/>
+                            <constraint firstItem="16O-Lg-3ck" firstAttribute="bottom" secondItem="PbL-mg-rFH" secondAttribute="bottom" constant="16" id="5wJ-WA-Zgw"/>
+                            <constraint firstItem="PbL-mg-rFH" firstAttribute="leading" secondItem="16O-Lg-3ck" secondAttribute="leading" constant="16" id="7RO-y9-pJC"/>
+                            <constraint firstItem="MIJ-j9-zXU" firstAttribute="bottom" secondItem="xKE-Su-NiR" secondAttribute="bottom" id="FIo-cR-xTf"/>
                             <constraint firstItem="ATy-Jh-Err" firstAttribute="top" secondItem="16O-Lg-3ck" secondAttribute="top" id="Ge1-OE-ofX"/>
+                            <constraint firstItem="MIJ-j9-zXU" firstAttribute="top" secondItem="xKE-Su-NiR" secondAttribute="top" id="GiY-3a-ea9"/>
+                            <constraint firstItem="PbL-mg-rFH" firstAttribute="top" secondItem="xKE-Su-NiR" secondAttribute="bottom" constant="16" id="UA6-6n-8GJ"/>
                             <constraint firstItem="ATy-Jh-Err" firstAttribute="leading" secondItem="16O-Lg-3ck" secondAttribute="leading" id="WPf-bP-PGo"/>
+                            <constraint firstItem="H6O-Jh-zEZ" firstAttribute="top" secondItem="xKE-Su-NiR" secondAttribute="top" id="Z3z-6y-BN1"/>
+                            <constraint firstItem="MIJ-j9-zXU" firstAttribute="leading" secondItem="xKE-Su-NiR" secondAttribute="leading" id="a5w-c9-rIO"/>
+                            <constraint firstItem="H6O-Jh-zEZ" firstAttribute="leading" secondItem="xKE-Su-NiR" secondAttribute="leading" id="bQr-Zl-Uqo"/>
+                            <constraint firstItem="16O-Lg-3ck" firstAttribute="trailing" secondItem="xKE-Su-NiR" secondAttribute="trailing" id="cYQ-3J-3Cm"/>
+                            <constraint firstItem="16O-Lg-3ck" firstAttribute="trailing" secondItem="PbL-mg-rFH" secondAttribute="trailing" constant="16" id="duY-FR-iJU"/>
+                            <constraint firstItem="H6O-Jh-zEZ" firstAttribute="bottom" secondItem="xKE-Su-NiR" secondAttribute="bottom" id="fU5-uY-cwr"/>
+                            <constraint firstItem="xKE-Su-NiR" firstAttribute="top" secondItem="ATy-Jh-Err" secondAttribute="bottom" id="jC2-00-Ui5"/>
                             <constraint firstItem="ATy-Jh-Err" firstAttribute="trailing" secondItem="16O-Lg-3ck" secondAttribute="trailing" id="jwT-Zo-eFF"/>
+                            <constraint firstItem="xKE-Su-NiR" firstAttribute="height" secondItem="16O-Lg-3ck" secondAttribute="height" multiplier="1/3" id="lDa-wB-Pe3"/>
+                            <constraint firstItem="MIJ-j9-zXU" firstAttribute="trailing" secondItem="xKE-Su-NiR" secondAttribute="trailing" id="qNK-95-G7Q"/>
+                            <constraint firstItem="xKE-Su-NiR" firstAttribute="leading" secondItem="16O-Lg-3ck" secondAttribute="leading" id="tS8-PP-NB0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="16O-Lg-3ck"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroundImage" destination="xKE-Su-NiR" id="gfo-eh-cbt"/>
+                        <outlet property="detailsTableView" destination="PbL-mg-rFH" id="IcC-hH-xLg"/>
+                        <outlet property="foregroundImage" destination="MIJ-j9-zXU" id="RuY-iG-PGy"/>
+                        <outlet property="navItem" destination="A7l-9g-D3B" id="cMA-RT-aNv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHF-V2-40b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="2162"/>
+            <point key="canvasLocation" x="-341.25" y="2161.2676056338028"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ChO-XX-vHI">
@@ -240,6 +312,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_close_24" width="24" height="24"/>
         <image name="ic_face_32" width="36" height="36"/>
         <image name="ic_map_24" width="24" height="24"/>
         <image name="ic_people_24" width="24" height="24"/>
