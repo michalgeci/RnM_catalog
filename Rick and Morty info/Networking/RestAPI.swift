@@ -13,7 +13,7 @@ final class RestAPI {
     
     // MARK: - Characters
     
-    private static var charactersBaseURL = "https://rickandmortyapi.com/api/character/"
+    static let charactersBaseURL = "https://rickandmortyapi.com/api/character/"
     
     /** Obtain all characters */
     static func getAllCharacters(filter: RMCharacterFilter?,
@@ -83,7 +83,7 @@ final class RestAPI {
     
     // MARK: - Locations
     
-    private static var locationsBaseURL = "https://rickandmortyapi.com/api/location/"
+    static let locationsBaseURL = "https://rickandmortyapi.com/api/location/"
     
     /** Obtain all locations */
     static func getAllLocations(pageURL: String = RestAPI.locationsBaseURL,
@@ -120,7 +120,7 @@ final class RestAPI {
     
     // MARK: - Episodes
     
-    private static var episodesBaseURL = "https://rickandmortyapi.com/api/episode/"
+    static let episodesBaseURL = "https://rickandmortyapi.com/api/episode/"
     
     /** Obtain all episodes */
     static func getAllEpisodes(pageURL: String = RestAPI.episodesBaseURL,
@@ -145,6 +145,29 @@ final class RestAPI {
         
         // Perform request
         AF.request(requestURL, method: .get).responseDecodable(of: RMEpisode.self) {
+            response in
+            do {
+                let result = try response.result.get()
+                completion(result, nil)
+            } catch {
+                completion(nil, response.error )
+            }
+        }
+    }
+    
+    /** Get multiple episodes details */
+    static func getMultipleEpisodes(ids: [Int], completion: @escaping ( _ response: [RMEpisode]?, _ error: AFError?) -> Void) {
+        
+        var idsStr = ""
+        for id in ids {
+            idsStr += String(id) + ","
+        }
+        
+        let requestURL = RestAPI.episodesBaseURL + idsStr
+        print(requestURL)
+        
+        // Perform request
+        AF.request(requestURL, method: .get).responseDecodable(of: [RMEpisode].self) {
             response in
             do {
                 let result = try response.result.get()

@@ -47,6 +47,29 @@ class CharacterDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func showEpisodesList(_ sender: Any) {
+        
+        // Get list of IDs for all characters episodes
+        var ids: [Int] = []
+        for episode in self.character.episode {
+            guard let id = Int(episode.replacingOccurrences(of: RestAPI.episodesBaseURL, with: "")) else { return }
+            ids.append(id)
+        }
+        
+        RestAPI.getMultipleEpisodes(ids: ids) { (resposne, error) in
+            guard let episodes = resposne else { return }
+            
+            var textToShow = ""
+            for episode in episodes {
+                textToShow.append("\(episode.episode) - \(episode.name)\n")
+            }
+            
+            let alertVC = UIAlertController(title: "Episodes", message: textToShow, preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
 
     // MARK: - Table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

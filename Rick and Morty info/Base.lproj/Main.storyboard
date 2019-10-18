@@ -237,7 +237,7 @@
                                 <rect key="frame" x="0.0" y="56" width="320" height="166.5"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-mg-rFH">
-                                <rect key="frame" x="16" y="238.5" width="288" height="244.5"/>
+                                <rect key="frame" x="16" y="238.5" width="288" height="202.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailCell" textLabel="fRV-2S-UjE" detailTextLabel="em7-N4-Eci" style="IBUITableViewCellStyleValue1" id="4vb-vM-bmN">
@@ -267,11 +267,17 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-Nr-vxp">
+                                <rect key="frame" x="120.5" y="445" width="79" height="30"/>
+                                <state key="normal" title="Episode list"/>
+                                <connections>
+                                    <action selector="showEpisodesList:" destination="Oph-Mn-CTl" eventType="touchUpInside" id="zDe-DU-nPf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="H6O-Jh-zEZ" firstAttribute="trailing" secondItem="xKE-Su-NiR" secondAttribute="trailing" id="5tX-EE-96j"/>
-                            <constraint firstItem="16O-Lg-3ck" firstAttribute="bottom" secondItem="PbL-mg-rFH" secondAttribute="bottom" constant="16" id="5wJ-WA-Zgw"/>
                             <constraint firstItem="PbL-mg-rFH" firstAttribute="leading" secondItem="16O-Lg-3ck" secondAttribute="leading" constant="16" id="7RO-y9-pJC"/>
                             <constraint firstItem="MIJ-j9-zXU" firstAttribute="bottom" secondItem="xKE-Su-NiR" secondAttribute="bottom" id="FIo-cR-xTf"/>
                             <constraint firstItem="ATy-Jh-Err" firstAttribute="top" secondItem="16O-Lg-3ck" secondAttribute="top" id="Ge1-OE-ofX"/>
@@ -284,10 +290,13 @@
                             <constraint firstItem="16O-Lg-3ck" firstAttribute="trailing" secondItem="xKE-Su-NiR" secondAttribute="trailing" id="cYQ-3J-3Cm"/>
                             <constraint firstItem="16O-Lg-3ck" firstAttribute="trailing" secondItem="PbL-mg-rFH" secondAttribute="trailing" constant="16" id="duY-FR-iJU"/>
                             <constraint firstItem="H6O-Jh-zEZ" firstAttribute="bottom" secondItem="xKE-Su-NiR" secondAttribute="bottom" id="fU5-uY-cwr"/>
+                            <constraint firstItem="16O-Lg-3ck" firstAttribute="bottom" secondItem="wKd-Nr-vxp" secondAttribute="bottom" constant="24" id="iCK-o2-658"/>
                             <constraint firstItem="xKE-Su-NiR" firstAttribute="top" secondItem="ATy-Jh-Err" secondAttribute="bottom" id="jC2-00-Ui5"/>
                             <constraint firstItem="ATy-Jh-Err" firstAttribute="trailing" secondItem="16O-Lg-3ck" secondAttribute="trailing" id="jwT-Zo-eFF"/>
                             <constraint firstItem="xKE-Su-NiR" firstAttribute="height" secondItem="16O-Lg-3ck" secondAttribute="height" multiplier="1/3" id="lDa-wB-Pe3"/>
+                            <constraint firstItem="wKd-Nr-vxp" firstAttribute="top" secondItem="PbL-mg-rFH" secondAttribute="bottom" constant="4" id="pXE-79-g03"/>
                             <constraint firstItem="MIJ-j9-zXU" firstAttribute="trailing" secondItem="xKE-Su-NiR" secondAttribute="trailing" id="qNK-95-G7Q"/>
+                            <constraint firstItem="wKd-Nr-vxp" firstAttribute="centerX" secondItem="25t-cJ-SZA" secondAttribute="centerX" id="sud-2a-vQK"/>
                             <constraint firstItem="xKE-Su-NiR" firstAttribute="leading" secondItem="16O-Lg-3ck" secondAttribute="leading" id="tS8-PP-NB0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="16O-Lg-3ck"/>
