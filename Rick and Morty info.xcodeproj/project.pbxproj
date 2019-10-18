@@ -27,6 +27,8 @@
 		32EEE8BA235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */; };
 		32EEE8BC235A0DE500F0DBE4 /* CharacterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */; };
 		32EEE8BE235A497600F0DBE4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8BD235A497600F0DBE4 /* UIViewController+Extension.swift */; };
+		32EEE8C1235A622F00F0DBE4 /* LocationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8C0235A622F00F0DBE4 /* LocationsVC.swift */; };
+		32EEE8C3235A626A00F0DBE4 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EEE8C2235A626A00F0DBE4 /* LocationCell.swift */; };
 		3BC4326CF93419E5B334A3DA /* Pods_Rick_and_Morty_info.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3EA8A7423F42D08613E253 /* Pods_Rick_and_Morty_info.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		32EEE8B9235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterListVC+CollectionView.swift"; sourceTree = "<group>"; };
 		32EEE8BB235A0DE500F0DBE4 /* CharacterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailVC.swift; sourceTree = "<group>"; };
 		32EEE8BD235A497600F0DBE4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		32EEE8C0235A622F00F0DBE4 /* LocationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsVC.swift; sourceTree = "<group>"; };
+		32EEE8C2235A626A00F0DBE4 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		BD3EA8A7423F42D08613E253 /* Pods_Rick_and_Morty_info.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rick_and_Morty_info.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -73,6 +77,7 @@
 		3224D8DB2357916000F4FBF0 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				32EEE8BF235A620300F0DBE4 /* Locations */,
 				3224D8DC2357917100F4FBF0 /* Characters */,
 			);
 			path = Features;
@@ -154,6 +159,15 @@
 				32EEE8BD235A497600F0DBE4 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		32EEE8BF235A620300F0DBE4 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				32EEE8C0235A622F00F0DBE4 /* LocationsVC.swift */,
+				32EEE8C2235A626A00F0DBE4 /* LocationCell.swift */,
+			);
+			path = Locations;
 			sourceTree = "<group>";
 		};
 		7A1417D15EC7026CD076FAE1 /* Pods */ = {
@@ -295,6 +309,7 @@
 				32EEE8BE235A497600F0DBE4 /* UIViewController+Extension.swift in Sources */,
 				3224D8E423579B7400F4FBF0 /* RMEpisode.swift in Sources */,
 				32EEE8B52359FFA800F0DBE4 /* URL+Extension.swift in Sources */,
+				32EEE8C1235A622F00F0DBE4 /* LocationsVC.swift in Sources */,
 				3224D8E223579AF000F4FBF0 /* RMLocation.swift in Sources */,
 				323465CD23578CFA002C14F4 /* RMCharacter.swift in Sources */,
 				32EEE8B2235897F700F0DBE4 /* LoadingCell.swift in Sources */,
@@ -302,6 +317,7 @@
 				324AB3E023576B3600A8A961 /* AppDelegate.swift in Sources */,
 				32EEE8BC235A0DE500F0DBE4 /* CharacterDetailVC.swift in Sources */,
 				3224D8E623579BE900F4FBF0 /* EpisodesResponse.swift in Sources */,
+				32EEE8C3235A626A00F0DBE4 /* LocationCell.swift in Sources */,
 				32EEE8BA235A0CE600F0DBE4 /* CharacterListVC+CollectionView.swift in Sources */,
 				3224D8E023579ACD00F4FBF0 /* LocationsResponse.swift in Sources */,
 				3224D8E82357AC0D00F4FBF0 /* RMCharacterFilter.swift in Sources */,
@@ -450,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ922RLXCK;
 				INFOPLIST_FILE = "Rick and Morty info/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -469,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DJ922RLXCK;
 				INFOPLIST_FILE = "Rick and Morty info/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
