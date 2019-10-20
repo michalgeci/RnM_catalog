@@ -13,4 +13,19 @@ extension UIViewController {
     var tabBarHeight: CGFloat? {
         return self.tabBarController?.tabBar.frame.size.height
     }
+    
+    func showCharactersAlert(characters: [RMCharacter], title: String) {
+        var message = "Characters:\n\n"
+        for character in characters {
+            message += character.name + "\n"
+        }
+        
+        if characters.isEmpty {
+            message += "🤷‍♂️ Empty? 🤷‍♀️"
+        }
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

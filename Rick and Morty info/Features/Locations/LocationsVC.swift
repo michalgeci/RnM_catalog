@@ -48,9 +48,17 @@ class LocationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             cell.typeLabel.text = location.type
             cell.dimensionLabel.text = location.dimension
             
-            // TODO: Spravit on selection
             cell.onSelection = {
+                let charactersIDs = RestAPI.getIDs(urls: location.residents, urlBase: RestAPI.charactersBaseURL)
                 
+                if charactersIDs.isEmpty {
+                    self.showCharactersAlert(characters: [], title: location.name)
+                    return
+                }
+                
+                RestAPI.getMultipleCharacters(ids: charactersIDs) { (characters, error) in
+                    self.showCharactersAlert(characters: characters ?? [], title: location.name)
+                }
             }
             
             return cell
@@ -58,6 +66,8 @@ class LocationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         return cell
     }
+    
+    
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.tableView.willDisplayCell(indexPath: indexPath, dataCount: self.data.count) {

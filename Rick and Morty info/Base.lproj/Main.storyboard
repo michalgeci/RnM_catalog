@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3oY-Q3-AsB" customClass="CustomTableView" customModule="Rick_and_Morty_info" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="1" width="320" height="518"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" textLabel="HI4-mU-lnc" detailTextLabel="vfb-X8-TnU" style="IBUITableViewCellStyleSubtitle" id="kSG-6z-QFf">
@@ -47,22 +47,36 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqR-c8-Roz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="4wC-JB-OPT"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="3oY-Q3-AsB" firstAttribute="top" secondItem="dbD-GF-Rax" secondAttribute="top" id="398-e9-Uxh"/>
+                            <constraint firstAttribute="trailing" secondItem="VqR-c8-Roz" secondAttribute="trailing" id="RUB-2H-aoC"/>
+                            <constraint firstItem="VqR-c8-Roz" firstAttribute="top" secondItem="dbD-GF-Rax" secondAttribute="top" id="RpE-aR-6H4"/>
+                            <constraint firstItem="3oY-Q3-AsB" firstAttribute="top" secondItem="VqR-c8-Roz" secondAttribute="bottom" id="dec-cb-4Jk"/>
                             <constraint firstItem="dbD-GF-Rax" firstAttribute="trailing" secondItem="3oY-Q3-AsB" secondAttribute="trailing" id="r2C-M1-JQA"/>
                             <constraint firstItem="dbD-GF-Rax" firstAttribute="bottom" secondItem="3oY-Q3-AsB" secondAttribute="bottom" id="wyM-A2-H1m"/>
+                            <constraint firstItem="VqR-c8-Roz" firstAttribute="leading" secondItem="EDB-WG-NvM" secondAttribute="leading" id="x9j-qF-75h"/>
                             <constraint firstItem="3oY-Q3-AsB" firstAttribute="leading" secondItem="dbD-GF-Rax" secondAttribute="leading" id="z9k-Hu-WVV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dbD-GF-Rax"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Episodes" image="ic_tv_24" id="ahN-QM-6IZ"/>
                     <navigationItem key="navigationItem" id="OIe-wQ-LEt"/>
+                    <connections>
+                        <outlet property="separatorTopHeightConstraint" destination="4wC-JB-OPT" id="rpf-E9-hea"/>
+                        <outlet property="tableView" destination="3oY-Q3-AsB" id="l7q-tZ-Jiq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGJ-xM-fue" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1389" y="1429"/>
+            <point key="canvasLocation" x="1387.5" y="1428.1690140845071"/>
         </scene>
         <!--Locations-->
         <scene sceneID="lru-Xr-vbH">
@@ -133,8 +147,8 @@
                         <constraints>
                             <constraint firstItem="cLb-gC-Cjz" firstAttribute="top" secondItem="6aR-pF-kpG" secondAttribute="top" id="Crt-8C-9lT"/>
                             <constraint firstItem="ons-HS-Lp2" firstAttribute="leading" secondItem="6aR-pF-kpG" secondAttribute="leading" id="SJw-ar-vcI"/>
-                            <constraint firstItem="6aR-pF-kpG" firstAttribute="trailing" secondItem="cLb-gC-Cjz" secondAttribute="trailing" id="SgT-jY-hbj"/>
-                            <constraint firstItem="cLb-gC-Cjz" firstAttribute="leading" secondItem="6aR-pF-kpG" secondAttribute="leading" id="hxR-Jy-ZDH"/>
+                            <constraint firstAttribute="trailing" secondItem="cLb-gC-Cjz" secondAttribute="trailing" id="SgT-jY-hbj"/>
+                            <constraint firstItem="cLb-gC-Cjz" firstAttribute="leading" secondItem="d4H-CT-OuY" secondAttribute="leading" id="hxR-Jy-ZDH"/>
                             <constraint firstItem="6aR-pF-kpG" firstAttribute="trailing" secondItem="ons-HS-Lp2" secondAttribute="trailing" id="qIG-PZ-0zn"/>
                             <constraint firstItem="ons-HS-Lp2" firstAttribute="top" secondItem="cLb-gC-Cjz" secondAttribute="bottom" id="qis-y1-PlL"/>
                             <constraint firstItem="6aR-pF-kpG" firstAttribute="bottom" secondItem="ons-HS-Lp2" secondAttribute="bottom" id="x4H-eg-JlK"/>
