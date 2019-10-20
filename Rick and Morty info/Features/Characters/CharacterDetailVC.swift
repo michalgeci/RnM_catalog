@@ -50,11 +50,7 @@ class CharacterDetailVC: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBAction func showEpisodesList(_ sender: Any) {
         
         // Get list of IDs for all characters episodes
-        var ids: [Int] = []
-        for episode in self.character.episode {
-            guard let id = Int(episode.replacingOccurrences(of: RestAPI.episodesBaseURL, with: "")) else { return }
-            ids.append(id)
-        }
+        let ids = RestAPI.getIDs(urls: self.character.episode, urlBase: RestAPI.episodesBaseURL)
         
         RestAPI.getMultipleEpisodes(ids: ids) { (resposne, error) in
             guard let episodes = resposne else { return }

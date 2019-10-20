@@ -13,6 +13,8 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var dimensionLabel: UILabel!
+    
+    var onSelection: ()->Void = {}
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +23,7 @@ class LocationCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        onSelection()
     }
 
 }

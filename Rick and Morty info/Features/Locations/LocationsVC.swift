@@ -7,84 +7,73 @@
 //
 
 import UIKit
+import Alamofire
 
-class LocationsVC: UITableViewController {
+class LocationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var topSeparatorHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableView: CustomTableView!
+    
+    var data: [RMLocation] = []
+    var filter = RMLocationFilter(page: nil, name: nil, type: nil, dimension: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        topSeparatorHeightConstraint.constant = 0.5
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        RestAPI.getAllLocations(filter: nil) { (response, error) in
+            self.data = response?.results ?? []
+            self.tableView.numberOfCells = self.data.count
+            self.tableView.reloadData()
+            self.filter = RMLocationFilter(url: response?.info.next ?? "")
+        }
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.tableView.numberOfCells
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = self.tableView.getCorrectCell(indexPath: indexPath, dataCount: self.data.count) { () -> UITableViewCell in
+            
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! LocationCell
+            let location = self.data[indexPath.row]
+            
+            cell.nameLabel.text = location.name
+            cell.typeLabel.text = location.type
+            cell.dimensionLabel.text = location.dimension
+            
+            // TODO: Spravit on selection
+            cell.onSelection = {
+                
+            }
+            
+            return cell
+        }
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.tableView.willDisplayCell(indexPath: indexPath, dataCount: self.data.count) {
+            RestAPI.getAllLocations(filter: self.filter) { (response, error) in
+                self.data.append(contentsOf: response?.results ?? [])
+                self.filter = RMLocationFilter(url: response?.info.next ?? "")
+                if response?.info.next == "" {
+                    self.tableView.setNoMoreData()
+                }
+                self.tableView.afterAppendRequest(dataCount: self.data.count)
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 56
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
