@@ -28,6 +28,8 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
@@ -35,6 +37,10 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
         self.searchBarDelimiterHeightConstraint.constant = 0.5
         
         self.initRequest()
+    }
+    
+    @objc func reloadData() {
+        self.collectionView.reloadData()
     }
     
     func initRequest() {
