@@ -24,10 +24,12 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        // Set notification when app enters foreground
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         self.collectionView.delegate = self
@@ -39,10 +41,12 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
         self.initRequest()
     }
     
+    // Reload cell (when app enters foreground, to style cells for present UI style)
     @objc func reloadData() {
         self.collectionView.reloadData()
     }
     
+    // Initial data acquisition
     func initRequest() {
         RestAPI.getAllCharacters(filter: self.filter) { (response, error) in
             self.characters = response?.results ?? []
@@ -64,6 +68,7 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
     
     // MARK: - Keyboard methods
     
+    // Set collection wiev insets based on keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         var contentInset: UIEdgeInsets = self.collectionView.contentInset
@@ -72,18 +77,21 @@ class CharacterListVC: UIViewController, UICollectionViewDelegateFlowLayout, UIC
         self.collectionView.scrollIndicatorInsets = contentInset
     }
     
+    // Reset collection view insets
     @objc func keyboardWillHide(notification: NSNotification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.collectionView.contentInset = contentInset
         self.collectionView.scrollIndicatorInsets = contentInset
     }
     
+    // Hides keyboard
     @IBAction func tapAnywhere(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
     // MARK: - Navigation
     
+    // Sends character data to detail VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let characterDetailVC = segue.destination as? CharacterDetailVC {
             if let character = sender as? RMCharacter {

@@ -10,10 +10,12 @@ import UIKit
 
 extension UIViewController {
 
+    /** Height of bottom tab bar */
     var tabBarHeight: CGFloat? {
         return self.tabBarController?.tabBar.frame.size.height
     }
     
+    /** Show alert with characters */
     func showCharactersAlert(characters: [RMCharacter], title: String) {
         var message = "Characters:\n\n"
         for character in characters {

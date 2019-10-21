@@ -13,6 +13,19 @@ class CustomTableView: UITableView {
     var addedLoader = false
     var numberOfCells = 0
     
+    // MARK: No more data variable, getter, setter
+    private var noMoreData = false
+    
+    func setNoMoreData() {
+        self.noMoreData = true
+    }
+    
+    func resetNoMoreData() {
+        self.noMoreData = false
+    }
+    
+    // MARK: - Loading cell
+    
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
@@ -24,6 +37,8 @@ class CustomTableView: UITableView {
         let cell = self.dequeueReusableCell(withIdentifier: "LoadingTableCell", for: indexPath) as! LoadingTableCell
         return cell
     }
+    
+    // MARK: - Help functions for datasource and delegate
     
     func getCorrectCell(indexPath: IndexPath, dataCount: Int, cellCreationClosure: () -> UITableViewCell) -> UITableViewCell {
         
@@ -61,18 +76,6 @@ class CustomTableView: UITableView {
         self.numberOfCells = dataCount
         self.addedLoader = false
         self.reloadData()
-    }
-    
-    
-    
-    private var noMoreData = false
-    
-    func setNoMoreData() {
-        self.noMoreData = true
-    }
-    
-    func resetNoMoreData() {
-        self.noMoreData = false
     }
 
 }

@@ -62,9 +62,11 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    // Show alert with characters in selected episode
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episode = self.data[indexPath.row]
         let ids = RestAPI.getIDs(urls: episode.characters, urlBase: RestAPI.charactersBaseURL)
+        
         RestAPI.getMultipleCharacters(ids: ids) { (characters, error) in
             let title = "\(episode.episode) - \(episode.name)\n\(episode.air_date)"
             self.showCharactersAlert(characters: characters ?? [], title: title)

@@ -19,11 +19,12 @@ class CharacterCell: UICollectionViewCell {
     private let placeholderImage = UIImage(named: "ic_face_32")
     
     func assignCharacter(character: RMCharacter) {
+        // Set name of character
         self.nameLabel.text = character.name
+        
+        // Set images from URL
         let url = URL(string: character.image)
-        
         self.backgroundImage.sd_setImage(with: url, placeholderImage: placeholderImage)
-        
         self.foregroundImage.sd_setImage(with: url, placeholderImage: placeholderImage) { (_, _, _, _) in
             self.foregroundImage.contentMode = .scaleAspectFill
         }
@@ -33,6 +34,7 @@ class CharacterCell: UICollectionViewCell {
         // Calculate real size of cell
         self.layoutIfNeeded()
         
+        // Select Blur style for present UI style
         if traitCollection.userInterfaceStyle == .dark {
             blur.effect = UIBlurEffect(style: .dark)
         } else {

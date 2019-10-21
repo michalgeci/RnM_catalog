@@ -10,14 +10,14 @@ import UIKit
 
 extension CharacterListVC {
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.numberOfCells
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row >= self.characters.count { return }
         let character = self.characters[indexPath.row]
         self.performSegue(withIdentifier: "showCharacterDetail", sender: character)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.numberOfCells
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -42,11 +42,13 @@ extension CharacterListVC {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row < self.characters.count {
+            // Dequeue Character cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "characterCell", for: indexPath) as! CharacterCell
             cell.initDefaults()
             cell.assignCharacter(character: self.characters[indexPath.row])
             return cell
         } else {
+            // Dequeue "loading/no more data" cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "loadingCell", for: indexPath) as! LoadingCell
             if self.filter.page == nil {
                 cell.label.text = "No more data"
