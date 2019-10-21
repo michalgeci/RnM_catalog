@@ -251,7 +251,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="258" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <activityIndicatorView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QaZ-Xa-Uz1">
+                                                <activityIndicatorView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QaZ-Xa-Uz1">
                                                     <rect key="frame" x="74" y="15" width="20" height="20"/>
                                                     <color key="color" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </activityIndicatorView>
