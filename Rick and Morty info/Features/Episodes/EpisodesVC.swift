@@ -26,7 +26,7 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         RestAPI.getAllEpisodes(filter: nil) { (response, error) in
             self.data = response?.results ?? []
-            self.filter = RMEpisodeFilter(url: response?.info.next ?? "")
+            self.filter = RMEpisodeFilter(url: response?.info.next)
             self.tableView.numberOfCells = self.data.count
             self.tableView.reloadData()
         }
@@ -54,7 +54,8 @@ class EpisodesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.tableView.willDisplayCell(indexPath: indexPath, dataCount: self.data.count) {
             RestAPI.getAllEpisodes(filter: self.filter) { (response, error) in
                 self.data.append(contentsOf: response?.results ?? [])
-                if response?.info.next == "" {
+                self.filter = RMEpisodeFilter(url: response?.info.next)
+                if response?.info.next == "" || response?.info.next == nil {
                     self.tableView.setNoMoreData()
                 }
                 self.tableView.afterAppendRequest(dataCount: self.data.count)

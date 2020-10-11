@@ -74,7 +74,7 @@ class LocationsVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             RestAPI.getAllLocations(filter: self.filter) { (response, error) in
                 self.data.append(contentsOf: response?.results ?? [])
                 self.filter = RMLocationFilter(url: response?.info.next ?? "")
-                if response?.info.next == "" {
+                if response?.info.next == "" || response?.info.next == nil {
                     self.tableView.setNoMoreData()
                 }
                 self.tableView.afterAppendRequest(dataCount: self.data.count)

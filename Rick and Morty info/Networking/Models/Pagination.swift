@@ -11,6 +11,6 @@ import Foundation
 struct Pagination: Decodable {
     var count: Int
     var pages: Int
-    var next: String
-    var prev: String
+    var next: String?
+    var prev: String?
 }

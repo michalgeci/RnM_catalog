@@ -21,8 +21,8 @@ class RMEpisodeFilter {
         self.episode = episode
     }
     
-    init(url: String) {
-        let params = URL(string: url)?.params()
+    init(url: String?) {
+        let params = url == nil ? nil : URL(string: url!)?.params()
         
         if let page = params?["page"] as? String {
             let pageInt = Int(page)

@@ -22,6 +22,7 @@ final class RestAPI {
                 completion(result, nil)
             } catch {
                 completion(nil, response.error )
+                print(response.error as Any)
             }
         }
     }
